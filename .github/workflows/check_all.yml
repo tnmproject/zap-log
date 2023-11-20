@@ -1,0 +1,15 @@
+on: [push, pull_request]
+name: Go check all
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    name: check
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.17.0'
+      - run: go vet ./...
+      - run: go test ./...
+      
